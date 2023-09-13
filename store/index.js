@@ -39,7 +39,7 @@ class ApexStore extends IApexStore {
     }
     const result = await this.db.collection('deliveryQueue')
       .findOneAndDelete({ after: { $lte: new Date() } }, queryOptions)
-    if (result.value) {
+    if (result && result.value) {
       return result.value
     }
     // if no deliveries available now, check for scheduled deliveries
